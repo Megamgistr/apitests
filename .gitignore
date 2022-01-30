@@ -1,7 +1,6 @@
 # Project exclude paths
 /gradle/
 /target/
-/allure-results/
 /build/
 
 ### IntelliJ IDEA ###
