@@ -1,5 +1,5 @@
 # Project exclude paths
-/.gradle/
+/gradle/
 /target/
 /allure-results/
 /build/
@@ -9,3 +9,4 @@
 *.iml
 *.ipr
 /.idea/
+
