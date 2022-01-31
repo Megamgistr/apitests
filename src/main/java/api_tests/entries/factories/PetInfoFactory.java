@@ -10,7 +10,7 @@ public class PetInfoFactory {
         PetInfo petInfo = new PetInfo();
         petInfo.setId(RandomStringGenerator.getRandomNumber(10));
         petInfo.setName(RandomStringGenerator.getRandomText(10));
-        petInfo.setStatus(AVAILABLE.getStatusName());
+        petInfo.setStatus(AVAILABLE);
         return petInfo;
     }
 }

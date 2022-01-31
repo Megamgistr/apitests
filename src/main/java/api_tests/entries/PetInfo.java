@@ -14,6 +14,6 @@ public class PetInfo {
     private Category category;
     private String name;
     private List<Tag> tags;
-    private String status;
+    private Status status;
     private List<String> photoUrls;
 }
