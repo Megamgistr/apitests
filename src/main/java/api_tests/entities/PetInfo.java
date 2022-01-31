@@ -1,4 +1,4 @@
-package api_tests.entries;
+package api_tests.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

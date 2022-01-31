@@ -1,6 +1,6 @@
 package api_tests.api;
 
-import api_tests.entries.PetInfo;
+import api_tests.entities.PetInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import okhttp3.*;

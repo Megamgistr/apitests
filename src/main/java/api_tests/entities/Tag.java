@@ -1,4 +1,4 @@
-package api_tests.entries;
+package api_tests.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
-    private String id;
+public class Tag {
     private String name;
+    private String id;
 }

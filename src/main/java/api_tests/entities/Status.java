@@ -1,4 +1,4 @@
-package api_tests.entries;
+package api_tests.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public enum Status {
     AVAILABLE("available");
-    private String statusName;
+    private final String statusName;
 }

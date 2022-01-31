@@ -1,9 +1,9 @@
-package api_tests.entries.factories;
+package api_tests.entities.factories;
 
-import api_tests.entries.PetInfo;
+import api_tests.entities.PetInfo;
 import api_tests.utils.RandomStringGenerator;
 
-import static api_tests.entries.Status.AVAILABLE;
+import static api_tests.entities.Status.AVAILABLE;
 
 public class PetInfoFactory {
     public static PetInfo getPetInfo() {
