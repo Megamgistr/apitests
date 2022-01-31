@@ -1,4 +1,4 @@
-package entries;
+package api_tests.entries;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
