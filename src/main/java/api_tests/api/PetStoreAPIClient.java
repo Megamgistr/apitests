@@ -1,13 +1,13 @@
 package api_tests.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import api_tests.entries.PetInfo;
-import java.net.HttpURLConnection;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import okhttp3.*;
 import org.awaitility.core.ConditionTimeoutException;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -24,11 +24,7 @@ public class PetStoreAPIClient {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private final OkHttpClient httpClient;
-
-    public PetStoreAPIClient() {
-        this.httpClient = new OkHttpClient();
-    }
+    private final OkHttpClient httpClient = new OkHttpClient();
 
     public PetInfo getPet(String petId) {
         try {
@@ -61,7 +57,7 @@ public class PetStoreAPIClient {
                         return response.code() == HttpURLConnection.HTTP_OK;
                     });
         } catch (ConditionTimeoutException e) {
-            throw new AssertionError("Pet " + petId + " hasn't delete within " + DELETE_PET_TIMEOUT + " seconds", e);
+            throw new AssertionError("Pet " + petId + " hasn't been deleted within " + DELETE_PET_TIMEOUT + " seconds", e);
         }
     }
 
@@ -71,7 +67,7 @@ public class PetStoreAPIClient {
                     .pollInterval(DEFAULT_POLLING_INTERVAL, TimeUnit.SECONDS)
                     .until(() -> getPet(petId), Objects::nonNull);
         } catch (ConditionTimeoutException e) {
-            throw new AssertionError("Pet " + petId + " hasn't create within " + CREATE_PET_TIMEOUT + " seconds", e);
+            throw new AssertionError("Pet " + petId + " hasn't been created within " + CREATE_PET_TIMEOUT + " seconds", e);
         }
     }
 
@@ -84,7 +80,7 @@ public class PetStoreAPIClient {
                         return Objects.equals(expectedPetInfo, petInfo);
                     });
         } catch (ConditionTimeoutException e) {
-            throw new AssertionError("Pet " + expectedPetInfo.getId() + " hasn't update within " + UPDATE_PET_TIMEOUT + " seconds", e);
+            throw new AssertionError("Pet " + expectedPetInfo.getId() + " hasn't been updated within " + UPDATE_PET_TIMEOUT + " seconds", e);
         }
     }
 
@@ -107,7 +103,7 @@ public class PetStoreAPIClient {
             Response response = httpClient.newCall(request).execute();
             int code = response.code();
             if (checkStatusCode && code != expectedStatus) {
-                throw new AssertionError("Wasn't to " + method + ": " + code +
+                throw new AssertionError(method + "request failed:" + code +
                         ": " + response);
             }
             return response;
