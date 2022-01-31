@@ -5,7 +5,7 @@ import entries.PetInfo;
 import entries.factories.PetInfoFactory;
 
 public abstract class AbstractPetTest {
-    protected final PetStoreAPIClient API_CLIENT = new PetStoreAPIClient();
+    protected static final PetStoreAPIClient API_CLIENT = new PetStoreAPIClient();
     protected PetInfo petInfo;
     protected PetInfo apiPetInfo;
 
