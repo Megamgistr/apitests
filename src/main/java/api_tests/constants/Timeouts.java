@@ -1,4 +1,4 @@
-package constants;
+package api_tests.constants;
 
 public final class Timeouts {
     public static final int CREATE_PET_TIMEOUT = 10;
