@@ -1,4 +1,4 @@
-package utils;
+package api_tests.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

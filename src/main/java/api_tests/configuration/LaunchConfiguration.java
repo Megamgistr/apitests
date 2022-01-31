@@ -1,4 +1,4 @@
-package configuration;
+package api_tests.configuration;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;

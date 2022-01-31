@@ -3,7 +3,7 @@ package api_tests.pets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.RandomStringGenerator;
+import api_tests.utils.RandomStringGenerator;
 
 public class UpdatePetTest extends AbstractPetTest {
     private String newName;

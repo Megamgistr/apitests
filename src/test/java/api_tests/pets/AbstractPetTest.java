@@ -1,8 +1,8 @@
 package api_tests.pets;
 
-import api.PetStoreAPIClient;
-import entries.PetInfo;
-import entries.factories.PetInfoFactory;
+import api_tests.api.PetStoreAPIClient;
+import api_tests.entries.PetInfo;
+import api_tests.entries.factories.PetInfoFactory;
 
 public abstract class AbstractPetTest {
     protected static final PetStoreAPIClient API_CLIENT = new PetStoreAPIClient();

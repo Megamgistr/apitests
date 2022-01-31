@@ -1,9 +1,8 @@
-package api;
+package api_tests.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entries.PetInfo;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import api_tests.entries.PetInfo;
+import java.net.HttpURLConnection;
 import lombok.SneakyThrows;
 import okhttp3.*;
 import org.awaitility.core.ConditionTimeoutException;
@@ -12,8 +11,8 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static configuration.LaunchConfiguration.BASE_URL;
-import static constants.Timeouts.*;
+import static api_tests.configuration.LaunchConfiguration.BASE_URL;
+import static api_tests.constants.Timeouts.*;
 import static org.awaitility.Awaitility.await;
 
 public class PetStoreAPIClient {
@@ -33,9 +32,9 @@ public class PetStoreAPIClient {
 
     public PetInfo getPet(String petId) {
         try {
-            Response response = sendRequest(Method.GET, PET_ENDPOINT + petId, null, false, Codes.NEVER_MIND.getCode());
+            Response response = sendRequest(Method.GET, PET_ENDPOINT + petId, null, false, 0);
             int statusCode = response.code();
-            if (statusCode != Codes.SUCCESS.getCode()) {
+            if (statusCode != HttpURLConnection.HTTP_OK) {
                 return null;
             }
             return OBJECT_MAPPER.readValue(Objects.requireNonNull(response.body()).string(), PetInfo.class);
@@ -58,8 +57,8 @@ public class PetStoreAPIClient {
             await().atMost(DELETE_PET_TIMEOUT, TimeUnit.SECONDS)
                     .pollInterval(DEFAULT_POLLING_INTERVAL, TimeUnit.SECONDS)
                     .until(() -> {
-                        Response response = sendRequest(Method.DELETE, PET_ENDPOINT + petId, null, false, Codes.NEVER_MIND.getCode());
-                        return response.code() == Codes.SUCCESS.getCode();
+                        Response response = sendRequest(Method.DELETE, PET_ENDPOINT + petId, null, false, 0);
+                        return response.code() == HttpURLConnection.HTTP_OK;
                     });
         } catch (ConditionTimeoutException e) {
             throw new AssertionError("Pet " + petId + " hasn't delete within " + DELETE_PET_TIMEOUT + " seconds", e);
@@ -90,7 +89,7 @@ public class PetStoreAPIClient {
     }
 
     private Response sendRequest(Method method, String endpoint, Object value) {
-        return sendRequest(method, endpoint, value, true, Codes.SUCCESS.getCode());
+        return sendRequest(method, endpoint, value, true, HttpURLConnection.HTTP_OK);
     }
 
     private Response sendRequest(Method method, String endpoint, Object value, boolean checkStatusCode, int expectedStatus) {
@@ -123,16 +122,6 @@ public class PetStoreAPIClient {
         POST,
         PUT,
         DELETE
-    }
-
-    @AllArgsConstructor
-    @Getter
-    private enum Codes {
-        SUCCESS(200),
-        NOT_FOUND(404),
-        NEVER_MIND(0);
-
-        private int code;
     }
 }
 
